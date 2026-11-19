@@ -1,0 +1,10 @@
+This library is used to support the Bosch BMM350 magnetometer (see drivers/compass/compass_bmm350.c).
+
+Library download location:
+    https://github.com/boschsensortec/BMM350_SensorAPI
+
+Version:
+    v1.10.0
+
+bmm350.c is compiled as part of Betaflight. One local change: the 25.49 constant in
+read_out_raw_data() is written as 25.49f so the file builds with -Wdouble-promotion.

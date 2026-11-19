@@ -209,7 +209,7 @@ const uartHardware_t uartHardware[UARTDEV_COUNT] = {
             { DEFIO_TAG_E(PC11), GPIO_AF8_UART4 },
             { DEFIO_TAG_E(PD0),  GPIO_AF8_UART4 },
             { DEFIO_TAG_E(PH14), GPIO_AF8_UART4 },
-
+            { DEFIO_TAG_E(PI9),  GPIO_AF8_UART4 },
         },
         .txPins = {
             { DEFIO_TAG_E(PA0),  GPIO_AF8_UART4 },

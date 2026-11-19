@@ -137,10 +137,13 @@ void systemInit(void)
 
 void systemReset(void)
 {
+    // Mask interrupts first: an ISR running while the D-cache is cleaned and
+    // disabled can fetch a stale handler pointer from RAM and fault.
+    __disable_irq();
+
     SCB_DisableDCache();
     SCB_DisableICache();
 
-    __disable_irq();
     NVIC_SystemReset();
 }
 

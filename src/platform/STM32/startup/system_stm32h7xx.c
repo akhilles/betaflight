@@ -496,7 +496,7 @@ void SystemClock_Config(void)
 {
     // Configure power supply
 
-#if defined(STM32H757xx)
+#if defined(STM32H757xx) && !defined(USE_H7_LDO_SUPPLY)
     // CubeOrangePlus H757 M4 - uses SMPS power supply
     // PWR_CR3 = PWR_CR3_SMPSEN | PWR_CR3_USB33DEN
 
@@ -504,8 +504,8 @@ void SystemClock_Config(void)
 
     __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE0);
 
-#elif defined(STM32H743xx) || defined(STM32H750xx) || defined(STM32H723xx) || defined(STM32H7A3xx) || defined(STM32H730xx)
-    // Legacy H7 devices (H743, H750, H757) and newer but SMPS-less devices(H7A3, H723, H730)
+#elif defined(STM32H743xx) || defined(STM32H750xx) || defined(STM32H723xx) || defined(STM32H7A3xx) || defined(STM32H730xx) || defined(STM32H757xx)
+    // Legacy H7 devices (H743, H750, H757, or H757 boards wired LDO-only via USE_H7_LDO_SUPPLY) and newer but SMPS-less devices(H7A3, H723, H730)
 
     HAL_PWREx_ConfigSupply(PWR_LDO_SUPPLY);
 

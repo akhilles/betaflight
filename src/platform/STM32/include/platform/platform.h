@@ -650,7 +650,7 @@ extern uint8_t _dmaram_end__;
 #elif defined(STM32F7)
 #define UARTHARDWARE_MAX_PINS 4
 #elif defined(STM32H7)
-#define UARTHARDWARE_MAX_PINS 6
+#define UARTHARDWARE_MAX_PINS 7
 #elif defined(STM32G4)
 #define UARTHARDWARE_MAX_PINS 3
 #elif defined(STM32H5) || defined(STM32C5)

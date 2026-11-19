@@ -136,7 +136,12 @@ const adcTagMap_t adcTagMap[] = {
     { DEFIO_TAG_E__PC5,  ADC_DEVICES_12,  ADC_CHANNEL_8,   8 },
     { DEFIO_TAG_E__PB0,  ADC_DEVICES_12,  ADC_CHANNEL_9,   9 },
     { DEFIO_TAG_E__PB1,  ADC_DEVICES_12,  ADC_CHANNEL_5,   5 },
+#if defined(USE_ADC_PA0_C)
+    // PA0 tag stands in for the dedicated PA0_C pad (ADC12_INP0)
+    { DEFIO_TAG_E__PA0,  ADC_DEVICES_12,  ADC_CHANNEL_0,   0 },
+#else
     { DEFIO_TAG_E__PA0,  ADC_DEVICES_1,   ADC_CHANNEL_16, 16 },
+#endif
     { DEFIO_TAG_E__PA1,  ADC_DEVICES_1,   ADC_CHANNEL_17, 17 },
     { DEFIO_TAG_E__PA2,  ADC_DEVICES_12,  ADC_CHANNEL_14, 14 },
     { DEFIO_TAG_E__PA3,  ADC_DEVICES_12,  ADC_CHANNEL_15, 15 },
@@ -485,9 +490,13 @@ void adcInit(const adcConfig_t *config)
 
 #ifdef USE_DMA_SPEC
         const dmaChannelSpec_t *dmaSpec = dmaGetChannelSpecByPeripheral(DMA_PERIPH_ADC, dev, config->dmaopt[dev]);
+        if (!dmaSpec) {
+            // No DMA option for this ADC (e.g. ADC3 for the internal channels): set ADCx_DMA_OPT.
+            return;
+        }
         dmaIdentifier_e dmaIdentifier = dmaGetIdentifier(dmaSpec->ref);
 
-        if (!dmaSpec || !dmaAllocate(dmaIdentifier, OWNER_ADC, RESOURCE_INDEX(dev))) {
+        if (!dmaAllocate(dmaIdentifier, OWNER_ADC, RESOURCE_INDEX(dev))) {
             return;
         }
 

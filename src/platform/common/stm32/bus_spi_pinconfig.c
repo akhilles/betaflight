@@ -265,14 +265,17 @@ const spiHardware_t spiHardware[] = {
         .sckPins = {
             { DEFIO_TAG_E(PF7), GPIO_AF5_SPI5 },
             { DEFIO_TAG_E(PH6), GPIO_AF5_SPI5 },
+            { DEFIO_TAG_E(PK0), GPIO_AF5_SPI5 },
         },
         .misoPins = {
             { DEFIO_TAG_E(PF8), GPIO_AF5_SPI5 },
             { DEFIO_TAG_E(PH7), GPIO_AF5_SPI5 },
+            { DEFIO_TAG_E(PJ11), GPIO_AF5_SPI5 },
         },
         .mosiPins = {
             { DEFIO_TAG_E(PF9), GPIO_AF5_SPI5 },
             { DEFIO_TAG_E(PF11), GPIO_AF5_SPI5 },
+            { DEFIO_TAG_E(PJ10), GPIO_AF5_SPI5 },
         },
         .rcc = RCC_APB2(SPI5),
         //.dmaIrqHandler = DMA2_ST1_HANDLER,

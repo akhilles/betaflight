@@ -330,6 +330,7 @@ COMMON_SRC += \
             drivers/accgyro/accgyro_spi_mpu9250.c \
             drivers/accgyro/accgyro_virtual.c \
             BoschSensortec/BMI270-Sensor-API/bmi270_maximum_fifo.c \
+            BoschSensortec/BMM350-Sensor-API/bmm350.c \
             drivers/barometer/barometer_2smpb_02b.c \
             drivers/barometer/barometer_bmp085.c \
             drivers/barometer/barometer_bmp280.c \
@@ -343,6 +344,7 @@ COMMON_SRC += \
             drivers/barometer/barometer_virtual.c \
             drivers/compass/compass_ak8963.c \
             drivers/compass/compass_ak8975.c \
+            drivers/compass/compass_bmm350.c \
             drivers/compass/compass_hmc5883l.c \
             drivers/compass/compass_ist8310.c \
             drivers/compass/compass_lis2mdl.c \
@@ -423,6 +425,8 @@ SIZE_OPTIMISED_SRC += \
             drivers/compass/compass_lis3mdl.c \
             drivers/compass/compass_mmc560x.c \
             drivers/compass/compass_ist8310.c \
+            drivers/compass/compass_bmm350.c \
+            BoschSensortec/BMM350-Sensor-API/bmm350.c \
             drivers/display_ug2864hsweg01.c \
             drivers/vtx_rtc6705_soft_spi.c \
             drivers/vtx_rtc6705.c
@@ -590,6 +594,9 @@ INCLUDE_DIRS += $(LIB_MAIN_DIR)/$(OLC_DIR)
 SRC += $(OLC_DIR)/olc.c
 SIZE_OPTIMISED_SRC += $(OLC_DIR)/olc.c
 endif
+
+# Bosch BMM350 SensorAPI, used by drivers/compass/compass_bmm350.c
+INCLUDE_DIRS += $(LIB_MAIN_DIR)/BoschSensortec/BMM350-Sensor-API
 
 # libcanard (DroneCAN transport) and the Betaflight-side glue live in the
 # per-MCU makefiles: they're only wired into the build for families whose
